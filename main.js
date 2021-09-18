@@ -5,10 +5,10 @@ const inputDiv = document.querySelector('.inputDiv');
 const input = document.createElement('input');
 input.type = 'text';
 
-const value = document.createElement('div');
+const valueContent = document.createElement('div');
 
 inputDiv.appendChild(input);
-inputDiv.appendChild(value);
+inputDiv.appendChild(valueContent);
 
 
 const colorInDiv = (item) => {
@@ -24,23 +24,23 @@ const colorInDiv = (item) => {
 }
 
 
-const colors = ['blue', 'green', 'orange', 'yellow', 'purple', 'gray', 'red', 'violet', 'brown', 'black', 'white', 'pink', 'gold', 'silver'];
+const colors = ['blue', 'lightblue', 'green', 'orange', 'yellow', 'purple', 'gray', 'red', 'violet', 'brown', 'black', 'pink', 'gold', 'silver'];
 const colorsFinal = [];
 
 
 input.addEventListener('input', () => {
+    const value = input.value.toLowerCase();
     colorsFinal.length = 0;
+    valueContent.textContent = value;
 
     for(let i = 0; i < colors.length; i++){
-        if(colors[i].slice(0, input.value.length) == input.value){
+        if(colors[i].slice(0, value.length) == value){
             colorsFinal.push(colors[i]);
             colorInDiv(colorsFinal);
         }else{
             colorInDiv(colorsFinal);
         }
     }
-
-    value.textContent = input.value;
 })
 
 colorInDiv(colors);
